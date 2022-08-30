@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Attendence;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Vtiful\Kernel\Excel;
 
 class attendenceController extends Controller
 {
@@ -12,9 +14,10 @@ class attendenceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+//        return response()->json(array('f_name'=>"janith",'l_name'=>"sameera"));
     }
 
     /**
@@ -82,4 +85,40 @@ class attendenceController extends Controller
     {
         //
     }
+
+    public function challenge_02(Request $request){
+        $number=$request->N;
+        $number--;
+
+        $array = array();
+
+        for ($x = 0; $x < $number; $x++) {
+            $array[] = $x;
+        }
+        $number++;
+
+        for ($x = 0; $x < $number; $x++) {
+            $newarray[]=rand($array[0],end($array));
+        }
+
+        $val=array_unique( array_diff_assoc( $newarray, array_unique( $newarray ) ) );
+        $val = array_values($val);
+        return response()->json(array('array'=>$newarray,'occur more than once in the given array'=>$val));
+
+    }
+
+    public function groupByOwnersService(){
+
+        $array = array(
+            "insurance.txt" => "Company A",
+            "letter.docx" => "Company A",
+            "Contract.docx" => "Company B"
+        );
+
+        return response()->json($array[]);
+    }
+
+
+
+
 }
