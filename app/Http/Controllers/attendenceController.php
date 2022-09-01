@@ -109,13 +109,22 @@ class attendenceController extends Controller
 
     public function groupByOwnersService(){
 
+
         $array = array(
-            "insurance.txt" => "Company A",
-            "letter.docx" => "Company A",
-            "Contract.docx" => "Company B"
+            "insurance.txt" =>"Company A",
+            "letter.docx" =>"Company A",
+            "Contract.docx" =>"Company B"
         );
 
-        return response()->json($array[]);
+
+        $original_array=collect($array)
+            ->groupBy(fn($value,$key)=>$value)
+            ->map(fn($group)=>$group->values())
+            ->all();
+
+
+        return response()->json($original_array);
+
     }
 
 
