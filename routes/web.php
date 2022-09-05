@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\attendenceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/Challenge_02', [attendenceController::class, 'challenge_02']);
+
+Route::get('/Challenge_04', [attendenceController::class, 'groupByOwnersService']);
